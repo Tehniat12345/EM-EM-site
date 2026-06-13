@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Em En Caffè | Luxury Coffee Experience</title>
+    <!-- Google Fonts for Premium Look -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES (Premium Pink + Coffee) --- */
+        :root {
+            --coffee-dark: #3e2723;
+            /* Darker, richer coffee */
+            --coffee-medium: #5d4037;
+            --pink-main: #d81b60;
+            /* Deep Pink instead of hot pink */
+            --pink-light: #fce4ec;
+            --gold-accent: #c5a059;
+            /* Gold color for expensive feel */
+            --white: #ffffff;
+            --bg-offwhite: #fafafa;
+            --text-dark: #2c2c2c;
+            --shadow-premium: 0 15px 35px rgba(62, 39, 35, 0.15);
+            --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-offwhite);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 0.5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- PREMIUM BUTTONS --- */
+        .btn-luxury {
+            background: linear-gradient(135deg, var(--pink-main) 0%, #ad1457 100%);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(216, 27, 96, 0.3);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-luxury::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-luxury:hover::before {
+            left: 100%;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(216, 27, 96, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--pink-main);
+            border: 2px solid var(--pink-main);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--pink-main);
+            color: white;
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.98);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            /* Logo adjustment to fit nicely */
+            width: 200px;
+            height: auto;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--coffee-dark);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--pink-main);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.3rem;
+            color: var(--coffee-dark);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--pink-main);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--gold-accent);
+            color: white;
+            font-size: 0.75rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            /* Using the user provided specific image */
+            background: linear-gradient(rgba(44, 20, 16, 0.6), rgba(62, 39, 35, 0.4)), url('https://emencaffe.com/wp-content/uploads/2026/05/0123456-6-1024x1024-1.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            margin-top: 70px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+        }
+
+        .hero-content span {
+            color: var(--pink-main);
+            /* Highlight word */
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+            color: #f0f0f0;
+        }
+
+        /* --- SECTIONS COMMON --- */
+        section {
+            padding: 6rem 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header p {
+            color: var(--gold-accent);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            color: var(--coffee-dark);
+        }
+
+        /* --- ORDER MENU SECTION --- */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-premium);
+            transition: var(--transition);
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-details {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            color: var(--coffee-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-desc {
+            font-size: 0.95rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            color: var(--pink-main);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- BOOKING SECTION --- */
+        .booking-section {
+            background-color: var(--coffee-dark);
+            border-radius: 0;
+            /* Full width premium feel */
+            margin: 0;
+            padding: 6rem 8%;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative circle */
+        .booking-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(216, 27, 96, 0.1);
+            border-radius: 50%;
+        }
+
+        .booking-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .booking-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gold-accent);
+        }
+
+        .booking-info p {
+            color: #ddd;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .booking-info ul li {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .booking-info i {
+            color: var(--pink-main);
+            width: 20px;
+        }
+
+        .booking-form {
+            flex: 1;
+            min-width: 350px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #eee;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--pink-main);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-control option {
+            background-color: var(--coffee-dark);
+            color: white;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            /* Seamless grid */
+        }
+
+        .gallery-item {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay on hover */
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(62, 39, 35, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* --- ENHANCED FOOTER --- */
+        footer {
+            background-color: #1a1a1a;
+            color: #dcdcdc;
+            padding: 5rem 8% 1rem;
+            border-top: 5px solid var(--pink-main);
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--pink-main);
+        }
+
+        .footer-desc {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--pink-main);
+            padding-left: 5px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--pink-main);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #2a2a2a;
+            color: white;
+            flex: 1;
+        }
+
+        .social-footer {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-footer a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #2a2a2a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .social-footer a:hover {
+            background: var(--pink-main);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* --- TOAST --- */
+        #toast {
+            visibility: hidden;
+            min-width: 300px;
+            background-color: var(--coffee-dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid var(--pink-main);
+            font-weight: 500;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            /* Hidden for simple demo */
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .booking-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <!-- Logo adjusted with max-width constraints in CSS -->
+            <img src="https://emencaffe.com/wp-content/uploads/2026/05/imageedit_1_6328314075.png"
+                alt="Em En Caffè Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reservation">Reservation</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <div class="cart-icon" onclick="showToast('Your cart is waiting!')">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cart-count">0</span>
+            </div>
+            <a href="#reservation" class="btn-luxury" style="padding: 10px 25px; font-size: 0.8rem;">Book Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Taste the Art of <span>Luxury</span></h1>
+            <p>Welcome to Em En Caffè. Where bold coffee meets a chic pink ambiance. Experience elegance in every sip.
+            </p>
+            <a href="#menu" class="btn-luxury">
+                Order Online <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu & Order Section -->
+    <section id="menu">
+        <div class="section-header">
+            <p>Curated Selection</p>
+            <h2>Exclusive Menu</h2>
+        </div>
+
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="product-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiYsOS3w7_YUM9vKcashms65afm7QgZzfEtw&s" alt="Pink Latte" class="product-img">
+                <div class="product-details">
+                    <h3 class="product-title">Rose Pink Latte</h3>
+                    <span class="product-price">$5.50</span>
+                    <p class="product-desc">Premium espresso infused with organic rose syrup and topped with pink velvet
+                        foam.</p>
+                    <button class="btn-luxury" onclick="addToCart('Rose Pink Latte')">
+                        <i class="fas fa-plus"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="product-card">
+                <img src="https://i.pinimg.com/736x/f9/6b/8c/f96b8c90b8dd64f539d29a9473c4f722.jpg" alt="Croissant" class="product-img">
+                <div class="product-details">
+                    <h3 class="product-title">Butter Croissant</h3>
+                    <span class="product-price">$3.50</span>
+                    <p class="product-desc">Flaky, golden, and freshly baked every morning using imported French butter.
+                    </p>
+                    <button class="btn-luxury" onclick="addToCart('Butter Croissant')">
+                        <i class="fas fa-plus"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="product-card">
+                <img src="https://i.pinimg.com/736x/ff/2c/89/ff2c89e77abc9fae1719292a108fd55a.jpg" alt="Cake" class="product-img">
+                <div class="product-details">
+                    <h3 class="product-title">Berry Cheesecake</h3>
+                    <span class="product-price">$6.00</span>
+                    <p class="product-desc">Creamy New York style cheesecake with a fresh strawberry compote topping.
+                    </p>
+                    <button class="btn-luxury" onclick="addToCart('Berry Cheesecake')">
+                        <i class="fas fa-plus"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="product-card">
+                <img src="https://emencaffe.com/wp-content/uploads/2026/05/0123456-6-1024x1024-1.png" alt="Matcha" class="product-img">
+                <div class="product-details">
+                    <h3 class="product-title">Iced Matcha</h3>
+                    <span class="product-price">$5.00</span>
+                    <p class="product-desc">Premium Japanese matcha blend served over ice with organic soy milk.</p>
+                    <button class="btn-luxury" onclick="addToCart('Iced Matcha')">
+                        <i class="fas fa-plus"></i> Add to Order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation">
+        <div class="booking-section">
+            <div class="section-header">
+                <p style="color: var(--pink-light);">Reservations</p>
+                <h2 style="color: white;">Book A Table</h2>
+            </div>
+
+            <div class="booking-container">
+                <div class="booking-info">
+                    <h3>Reserve Your Spot</h3>
+                    <p>Enjoy the cozy, premium vibes of Em En Caffè with your friends and family. We ensure a
+                        personalized experience for every guest. Book your table in advance to avoid waiting.</p>
+                    <ul>
+                        <li><i class="fas fa-phone-alt"></i> +92 300 1234567</li>
+                        <li><i class="fas fa-envelope"></i> info@emencaffe.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Pink Street, Coffee City</li>
+                        <li><i class="fas fa-clock"></i> Open Daily: 8:00 AM - 11:00 PM</li>
+                    </ul>
+                </div>
+
+                <div class="booking-form">
+                    <form onsubmit="handleBooking(event)">
+                        <div class="form-group">
+                            <label>Your Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" class="form-control" placeholder="+92 3xx xxxxxxx" required>
+                        </div>
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label>Date</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label>Time</label>
+                                <input type="time" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Guests</label>
+                            <select class="form-control">
+                                <option>2 People</option>
+                                <option>3 People</option>
+                                <option>4 People</option>
+                                <option>5+ People</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-luxury" style="width: 100%;">Confirm Booking</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+        <div class="section-header">
+            <p>Visual Story</p>
+            <h2>Our Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="https://emencaffe.com/wp-content/uploads/2026/05/01245.webp" alt="Cafe Interior"></div>
+            <div class="gallery-item"><img src="https://emencaffe.com/wp-content/uploads/2026/05/0123456-6-825x1024-1-768x953.webp" alt="Coffee Art">
+            </div>
+            <div class="gallery-item"><img src="https://emencaffe.com/wp-content/uploads/2026/05/0123456-5-1-825x1024-1-768x953.webp" alt="Desserts"></div>
+            <div class="gallery-item"><img src="https://emencaffe.com/wp-content/uploads/2026/05/785-2-825x1024-1-768x953.webp" alt="Barista"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-top">
+            <!-- Col 1 -->
+            <div class="footer-col">
+                <div class="logo" style="margin-bottom: 20px;">
+                    <img src="https://emencaffe.com/wp-content/uploads/2026/05/imageedit_1_6328314075.png" alt="Logo"
+                        style="max-width: 180px;">
+                </div>
+                <p class="footer-desc">
+                    Experience the perfect blend of taste and aesthetics. At Em En Caffè, we serve love in every cup,
+                    creating memories that last a lifetime.
+                </p>
+                <div class="social-footer">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#reservation">Reservations</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="footer-col">
+                <h4>Opening Hours</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Mon - Fri: 8am - 10pm</a></li>
+                    <li><a href="#">Saturday: 9am - 11pm</a></li>
+                    <li><a href="#">Sunday: 9am - 9pm</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <span>123 Pink Street, Coffee City, Pakistan</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                    <span>+92 300 1234567</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <span>hello@emencaffe.com</span>
+                </div>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your Email">
+                    <button class="btn-outline" style="padding: 10px 15px; border-radius: 5px;"><i
+                            class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Em En Caffè. All Rights Reserved.</p>
+            <p>Designed with <i class="fas fa-heart" style="color: var(--pink-main);"></i> for Coffee Lovers</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast">Item added to cart!</div>
+
+    <script>
+        let cartTotal = 0;
+
+        function addToCart(itemName) {
+            cartTotal++;
+            document.getElementById('cart-count').innerText = cartTotal;
+            showToast(`${itemName} added to your order!`);
+        }
+
+        function handleBooking(event) {
+            event.preventDefault();
+            const btn = event.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = "Confirmed!";
+            btn.style.background = "#4CAF50";
+            btn.style.borderColor = "#4CAF50";
+
+            showToast("Your table has been booked successfully!");
+
+            setTimeout(() => {
+                event.target.reset();
+                btn.innerText = originalText;
+                btn.style.background = "";
+                btn.style.borderColor = "";
+            }, 3000);
+        }
+
+        function showToast(message) {
+            var x = document.getElementById("toast");
+            x.innerText = message;
+            x.className = "show";
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+</body>
+
+</html>
